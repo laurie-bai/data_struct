@@ -111,7 +111,7 @@ void in_order_traverse_tree(Node *node)
 	in_order_traverse_tree(node->rchild);
 }
 
-int count = 0;
+static int count = 0;
 void find_k_max(Node *node, int k)
 {
 	if (node == NULL)
@@ -123,26 +123,9 @@ void find_k_max(Node *node, int k)
 	find_k_max(node->lchild, k);
 }
 
-int main(int argc, char *argv[])
+int get_node_nums(Node *node)
 {
-	Tree tree;
-
-	init_tree(&tree);
-	insert_tree(&tree, 5);
-	insert_tree(&tree, 2);
-	insert_tree(&tree, 3);
-	insert_tree(&tree, 6);
-	insert_tree(&tree, 12);
-	insert_tree(&tree, 9);
-	insert_tree(&tree, 10);
-	
-	find_k_max(tree.root, 4);
-	
-	in_order_traverse_tree(tree.root);
-	Node *node = successor_tree(tree.root);
-	delete_tree(&tree, 6);
-	delete_tree(&tree, 5);
-	in_order_traverse_tree(tree.root);
-
-	return 0;
+	if (node == NULL)
+		return 0;
+	return get_node_nums(node->lchild) + get_node_nums(node->rchild) + 1;
 }

@@ -21,5 +21,6 @@ Node *delete_tree(Tree *, DataType);
 Node *min_tree(Node *);
 Node *successor_tree(Node *);
 void find_k_max(Node *, int);
+int  get_node_nums(Node *);
 
 #endif
